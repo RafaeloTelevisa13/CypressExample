@@ -1,0 +1,23 @@
+{
+  "name": "cypressexample",
+  "version": "1.0.0",
+  "description": "Testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "cypress",
+    "javascript"
+  ],
+  "author": "Rafael Cervantes",
+  "license": "ISC",
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^15.1.6",
+    "@angular/cli": "^15.1.6",
+    "@angular/common": "^15.1.5",
+    "@angular/core": "^15.1.5",
+    "@angular/platform-browser-dynamic": "^15.1.5",
+    "cypress": "^12.7.0"
+  }
+}
