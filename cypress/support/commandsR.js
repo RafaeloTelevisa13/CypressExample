@@ -13,9 +13,33 @@ Cypress.Commands.add('scrollDownUp', () => {
     cy.scrollTo('bottom', { duration: 2000 }) //Desplácese hasta la parte inferior de la ventana
     cy.scrollTo('top', { duration: 2000 })
 })
-Cypress.Commands.add('addProduct', () => {
+Cypress.Commands.add('addOneProduct', () => {
     cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
     cy.get(':nth-child(1) > .inventory_item_description > .pricebar > .inventory_item_price').should('have.text', '$29.99')
-    cy.get('.shopping_cart_link').click();
-    cy.get('[data-test="checkout"]').click();
+})
+Cypress.Commands.add('validatePrice', () => {
+
+    cy.get('.summary_subtotal_label').then(function ($elem) {
+
+        const priceProduct = parseFloat(($elem.text().split('$')[1]))
+        cy.get('.summary_tax_label').then(function ($elem) {
+            const tax = parseFloat(($elem.text().split('$')[1]))
+            cy.get('.summary_total_label').then(function ($elem) {
+                const total = parseFloat(($elem.text().split('$')[1]))
+                let add = (priceProduct, tax) => parseFloat(priceProduct) + parseFloat(tax);
+                expect(add(priceProduct, tax)).to.eq(total)
+                cy.wait(2000)
+                cy.get('[data-test="finish"]').click()
+                cy.get('[data-test="back-to-products"]').click()
+            })
+        })
+    })
+
+})
+Cypress.Commands.add('addAllProducts', () => {
+
+    cy.get('.pricebar').each(($ele, index, array) => {
+        cy.log('$ele', $ele[index]);
+        cy.wrap($ele).find("button").click()
+    })
 })
