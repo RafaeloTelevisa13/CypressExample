@@ -6,24 +6,24 @@ describe('Send deliver', () => {
     })
 
 
-    it('Complete inputs', () => {
+    it('Test first', () => {
         cy.addOneProduct();
         cy.get('.shopping_cart_link').click();
         cy.get('[data-test="checkout"]').click();
-        cy.get('[data-test="firstName"]').type(loginDates.nameUser);
-        cy.get('[data-test="lastName"]').type(loginDates.lastName);
-        cy.get('[data-test="postalCode"]').type(loginDates.CP);
+        cy.completeInputs()
         cy.get('[data-test="continue"]').click()
         cy.scrollDownUp()
         cy.validatePrice()
+        cy.get('[data-test="finish"]').click()
+        cy.get('[data-test="back-to-products"]').click()
         cy.addAllProducts()
         cy.get('.shopping_cart_link').click();
         cy.get('[data-test="checkout"]').click();
-        cy.get('[data-test="firstName"]').type(loginDates.nameUser);
-        cy.get('[data-test="lastName"]').type(loginDates.lastName);
-        cy.get('[data-test="postalCode"]').type(loginDates.CP);
+        cy.completeInputs()
         cy.get('[data-test="continue"]').click()
         cy.scrollDownUp()
         cy.validatePrice()
+        cy.get('[data-test="finish"]').click()
+        cy.get('[data-test="back-to-products"]').click()
     });
 })

@@ -1,3 +1,5 @@
+const loginDates = require('.././fixtures/fixtures-demo/sauceCredentials.json');
+
 Cypress.Commands.add('typeLogin', (username, password) => {
     cy.get('[data-test="username"]').type(username)
     cy.get('[data-test="password"]').type(password)
@@ -17,6 +19,11 @@ Cypress.Commands.add('addOneProduct', () => {
     cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
     cy.get(':nth-child(1) > .inventory_item_description > .pricebar > .inventory_item_price').should('have.text', '$29.99')
 })
+Cypress.Commands.add('completeInputs', () => {
+    cy.get('[data-test="firstName"]').type(loginDates.nameUser);
+    cy.get('[data-test="lastName"]').type(loginDates.lastName);
+    cy.get('[data-test="postalCode"]').type(loginDates.CP);
+})
 Cypress.Commands.add('validatePrice', () => {
 
     cy.get('.summary_subtotal_label').then(function ($elem) {
@@ -29,8 +36,6 @@ Cypress.Commands.add('validatePrice', () => {
                 let add = (priceProduct, tax) => parseFloat(priceProduct) + parseFloat(tax);
                 expect(add(priceProduct, tax)).to.eq(total)
                 cy.wait(2000)
-                cy.get('[data-test="finish"]').click()
-                cy.get('[data-test="back-to-products"]').click()
             })
         })
     })
