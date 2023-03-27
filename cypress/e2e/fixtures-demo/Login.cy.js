@@ -1,7 +1,7 @@
 describe('Fixtures demo', () => {
 
     beforeEach(() => {
-        cy.visit('https://www.saucedemo.com/');
+        cy.visit('/');
         
     })
 

@@ -4,7 +4,7 @@ import inventoryPage from  "../../support/pages-saucedemo/inventoryPage.cy";
 
 describe('Page Object Model', () => {
     beforeEach( ()=>{
-        cy.visit('https://www.saucedemo.com/')
+        cy.visit('/')
     })
 
     it('should login to inventory page', () => {

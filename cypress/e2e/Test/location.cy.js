@@ -2,13 +2,13 @@ describe('Location demo',() => {
     let username = "standard_user";
     let password = "secret_sauce";
     beforeEach( () => {
-        cy.visit('https://www.saucedemo.com/')
+        cy.visit('/')
     })
     it('should have tittle Swag Labs', () => {
         cy.title().should('eq','Swag Labs')
     })
     it('verify URL', () => {
-        cy.url().should('eq','https://www.saucedemo.com/')
+        cy.url().should('eq','/')
     })
     it('should use https', () => {
         cy.location('protocol').should('contains', 'https')
